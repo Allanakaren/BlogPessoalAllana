@@ -1,8 +1,13 @@
-<div class="container-fluid">
+<style type="text/css">
+  p{
+      font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+  }
+</style>
+<div class="container-fluid bg-info">
 
     <div class="row bg-secondary d-flex align-items-center ">
         <div class="col-md-6 text-white">
-         <div class="rowb d-flex justify-content-center">
+         <div class="row d-flex justify-content-center">
           <div class="col-md-6">
            <h1 class="fs-54">Seja bem vindo(a)!</h1>
            <h5 class="'fs-18">Expresse aqui os seus pensamentos e opiniões!</h5>
@@ -23,14 +28,14 @@
 
 <div class="container mb-5 mt-5" id='postagens'>
     <nav>
-        <div class="nav nav-tabs d-flex active text-secondary font-weight-bold justify-content-center" id="nav-tab" role="tablist">
+        <div class="nav nav-tabs d-flex active  text-body font-weight-bold justify-content-center" id="nav-tab" role="tablist">
           <a class="nav-item nav-link active" id="todaspostagens-tab" data-toggle="tab" href="#todaspostagens"
            role="tab" aria-controls="todaspostagens" aria-selected="true">Todas as Postagens</a>
 
-          <a class="nav-item nav-link text-secondary font-weight-bold " id="nav-minhaspostagens-tab" data-toggle="tab" href="#minhaspostagens"
+          <a class="nav-item nav-link text-body font-weight-bold " id="nav-minhaspostagens-tab" data-toggle="tab" href="#minhaspostagens"
            role="tab" aria-controls="minhaspostagens" aria-selected="false">Minhas Postagens</a>
 
-          <a class="nav-item nav-link  text-secondary font-weight-bold" id="nav-postagenstema-tab" data-toggle="tab" href="#postagenstema"
+          <a class="nav-item nav-link text-body  font-weight-bold" id="nav-postagenstema-tab" data-toggle="tab" href="#postagenstema"
            role="tab" aria-controls="postagenstema" aria-selected="false">Postagens por Tema</a>
         </div>
       </nav>
@@ -66,24 +71,26 @@
 
           <div class="form-group">
            <label for="titulo">Título</label>
-           <input type="text" class="form-control" id="titulo" placeholder="Digite o Título">
+           <input [(ngModel)]="postagem.titulo" type="text" class="form-control" id="titulo" placeholder="Digite o Título">
           </div> 
 
           <div class="form-group">
             <label for="texto">Texto</label>
-            <textarea name="texto" id="texto" rows="3" class="form-control" ></textarea>
+            <textarea [(ngModel)]="postagem.texto" name="texto" id="texto" rows="3" class="form-control" ></textarea>
            </div>
 
            <div class="form-group">
-            <label for="tema">Escolha um tema ou <a data-dismiss="modal" routerLink="/tema">Cadastre um novo</a>: </label>
-            <select name="tema" id="tema" class="form-control"></select>
-            <option value="">Temas</option>
+            <label for="texto">Escolha um tema ou <a data-dismiss="modal" routerLink="/tema">Cadastre um novo</a>: </label>
+            <select name="tema" id="tema" class="form-control" [(ngModel)]="idTema" (change)="findByIdTema">
+              <option *ngFor="let tema of listaTemas" value="{{tema.id}}"> {{tema.descricao}} </option>
+            </select>
+            
            </div>
 
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-dismiss="modal" text-white>Cancelar</button>
-          <button type="button" class="btn btn-success" text-white >Publicar</button>
+          <button type="button" class="btn btn-success" text-white (click)="publicar()" data-dismiss="modal" >Publicar</button>
         </div>
       </div>
     </div>
