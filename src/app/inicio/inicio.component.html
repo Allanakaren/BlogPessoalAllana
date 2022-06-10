@@ -1,9 +1,7 @@
-<style type="text/css">
-  p{
-      font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
-  }
-</style>
-<div class="container-fluid bg-info">
+
+<div class="bg-secondary fs">
+
+  <div class="container-fluid bg-secondary fs">
 
     <div class="row bg-secondary d-flex align-items-center ">
         <div class="col-md-6 text-white">
@@ -24,35 +22,84 @@
          <img src="https://i.imgur.com/4qa1vlb.png" alt="" width="500px" height="500px">
         </div>
     </div>
-</div>
+ </div>
 
-<div class="container mb-5 mt-5" id='postagens'>
+ <div class="container mb-5 mt-5 bg-secondary" id='postagens'>
     <nav>
-        <div class="nav nav-tabs d-flex active  text-body font-weight-bold justify-content-center" id="nav-tab" role="tablist">
+        <div class="nav nav-tabs d-flex active  text-body font-weight-bold justify-content-center" id="nav-tab" 
+        role="tablist">
           <a class="nav-item nav-link active" id="todaspostagens-tab" data-toggle="tab" href="#todaspostagens"
            role="tab" aria-controls="todaspostagens" aria-selected="true">Todas as Postagens</a>
 
-          <a class="nav-item nav-link text-body font-weight-bold " id="nav-minhaspostagens-tab" data-toggle="tab" href="#minhaspostagens"
+          <a (click)="findByIdUser()" class="nav-item nav-link text-body font-weight-bold "
+           id="nav-minhaspostagens-tab" data-toggle="tab" href="#minhaspostagens"
            role="tab" aria-controls="minhaspostagens" aria-selected="false">Minhas Postagens</a>
 
-          <a class="nav-item nav-link text-body  font-weight-bold" id="nav-postagenstema-tab" data-toggle="tab" href="#postagenstema"
-           role="tab" aria-controls="postagenstema" aria-selected="false">Postagens por Tema</a>
+          <a class="nav-item nav-link text-body  font-weight-bold" id="nav-postagenstema-tab"
+           data-toggle="tab" href="#postagenstema"
+           role="tab" aria-controls="postagenstema" aria-selected="false">
+           Postagens por Tema
+          </a>
         </div>
       </nav>
-      <div class="tab-content" id="nav-tabContent">
+      <div class="tab-content mt-5" id="nav-tabContent">
         <div class="tab-pane fade show active" id="todaspostagens" role="tabpanel" aria-labelledby="nav-todaspostagens-tab">
-            Todas as Postagens
+            
+          <div class="card-columns">
+            <div class="card text-center" *ngFor="let item of listaPostagens">
+              <div class="card-body">
+                <h5 class="card-title m-0">{{item.titulo}}</h5>
+                <small class="text-muted"> Tema: {{item.tema.descricao}}</small>
+                <p class="card-text mt-3">{{item.texto}}</p>
+                <p class="card-text"><small class="text-muted">
+                  {{item.data | date: 'dd/MM/yyyy'}} às {{item.data | date: 'HH:mm'}}
+                </small></p>
+
+                <p class="card-text"><small class="text-muted">
+                  {{item.usuario.nome}}
+                </small></p>
+
+              </div>
+            </div>
+          </div>
+
         </div>
 
         <div class="tab-pane fade" id="minhaspostagens" role="tabpanel" aria-labelledby="nav-minhaspostagens-tab">
-            Minhas postagens
+          
+          <div class="card-columns">
+            <div class="card text-center" *ngFor="let item of user.postagem ">
+              <div class="card-body">
+                <h5 class="card-title m-0">{{ item.titulo }}</h5>
+                <small class="text-muted"> Tema: {{ item.tema.descricao }} </small>
+                <p class="card-text mt-3">{{ item.texto }}</p>
+                <p class="card-text">
+                  <small class="text-muted"
+                    >{{ item.data | date: "dd/MM/yyyy" }} às
+                    {{ item.data | date: "HH:mm" }}</small>
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="tab-pane fade" id="postagenstema" role="tabpanel" aria-labelledby="nav-postagenstema-tab">
-         Postagens por Tema
+         
+          <div class="card-columns" *ngFor="let tema of listaTemas">
+            <div class="card text-center" *ngFor="let item of tema.postagem">
+              <div class="card-body">
+                <h5 class="card-title m-0">{{item.titulo}}</h5>
+                <p class="card-text mt-3">{{item.texto}}</p>
+                <p class="card-text"><small class="text-muted">
+                  {{item.data | date: 'dd/MM/yyyy'}} às {{item.data | date: 'HH:mm'}}
+                </small></p>
+                <p class="card-text"><small class="text-muted">
+                  {{item.usuario.nome}}
+                </small></p>
+
         </div>
       </div>
-</div>
+  </div>
 
 
 
@@ -95,3 +142,4 @@
       </div>
     </div>
   </div>
+</div>

@@ -24,13 +24,13 @@ export class PostagemService {
     return this.http.get<Postagem>(`https://blogpessoalallanakaren.herokuapp.com/postagens/${id}`, this.token)
   }
 
-  PostPostagem(Postagem: Postagem): Observable<Postagem>{
-     return this.http.post<Postagem>('https://blogpessoalallanakaren.herokuapp.com/postagens', Postagem, this.token)
+  PostPostagem(postagem: Postagem): Observable<Postagem>{
+     return this.http.post<Postagem>('https://blogpessoalallanakaren.herokuapp.com/postagens', postagem, this.token)
 
   }
 
-  putPostagem(Postagem: Postagem): Observable<Postagem>{
-    return this.http.put<Postagem>('https://blogpessoalallanakaren.herokuapp.com/postagens', Postagem, this.token)
+  putPostagem(postagem: Postagem): Observable<Postagem>{
+    return this.http.put<Postagem>('https://blogpessoalallanakaren.herokuapp.com/postagens', postagem, this.token)
   }
 
   deletePostagem(id: number){
