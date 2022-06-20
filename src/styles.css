@@ -10,12 +10,12 @@ html{
     font-size: 18pt;
 }
 
-bg-info {
+.bg-info {
     
   background-color: #A9A9A9;
 
 }
 
 .fs{
-font-family:'cambria'
+font-family:'sans-serif'
 }
